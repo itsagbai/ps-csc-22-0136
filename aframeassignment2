@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Solar System</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            overflow: hidden;
+        }
+        h1 {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: yellow;
+            font-family: Arial;
+            text-shadow: 0 0 10px yellow;
+            z-index: 100;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        .info {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-family: Arial;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 100;
+            text-align: center;
+        }
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            z-index: 100;
+        }
+        .controls button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Solar System </h1>
+    
+    <div class="controls">
+    </div>
+    
+    <div class="info">Click on planets for information</div>
+    
+    <a-scene>
+        <!-- Space background with stars -->
+        <a-sky color="#000011"></a-sky>
+        
+        <!-- Add some distant stars -->
+        <a-entity particle-system="preset: default; particleCount: 100; color: #FFFFFF; size: 0.5" 
+                  position="0 0 -50" scale="100 100 100"></a-entity>
+        
+        <!-- Sun at center -->
+        <a-sphere position="0 0 0" radius="1.8" 
+                  material="src: 2k_sun.jpg">
+            <a-light type="point" color="#FFF" intensity="2" distance="50"></a-light>
+        </a-sphere>
+        <a-text value="SUN" position="0 -2.5 0" align="center" color="#FFD700" width="3" class="label"></a-text>
+        
+        <!-- Mercury Orbit -->
+        <a-entity id="mercury-orbit" position="0 0 0">
+            <a-entity id="mercury" position="4 0 0">
+                <a-sphere radius="0.18" 
+                         material="src: 2k_mercury.jpg">
+                </a-sphere>
+                <a-text value="MERCURY" position="0 -0.3 0" align="center" color="#A9A9A9" width="2" class="label"></a-text>
+            </a-entity>
+        </a-entity>
+        
+        <!-- Venus Orbit -->
+        <a-entity id="venus-orbit" position="0 0 0">
+            <a-entity id="venus" position="6 0 0">
+                <a-sphere radius="0.25" 
+                         material="src: 2k_venus_surface.jpg">
+                </a-sphere>
+                <a-text value="VENUS" position="0 -0.4 0" align="center" color="#FFA500" width="2" class="label"></a-text>
+            </a-entity>
+        </a-entity>
+        
+        <!-- Earth Orbit -->
+        <a-entity id="earth-orbit" position="0 0 0">
+            <a-entity id="earth" position="8 0 0">
+                <a-sphere radius="0.3" 
+                         material="src: 2k_earth_normal_map.jpg">
+                </a-sphere>
+                <a-text value="EARTH" position="0 -0.5 0" align="center" color="#4169E1" width="2" class="label"></a-text>
+            </a-entity>
+        </a-entity>
+        
+        <!-- Mars Orbit -->
+        <a-entity id="mars-orbit" position="0 0 0">
+            <a-entity id="mars" position="10 0 0">
+                <a-sphere radius="0.25" 
+                         material="src: 2k_mars.jpg">
+                </a-sphere>
+                <a-text value="MARS" position="0 -0.4 0" align="center" color="#FF4500" width="2" class="label"></a-text>
+            </a-entity>
+        </a-entity>
+        
+        <!-- Jupiter Orbit -->
+        <a-entity id="jupiter-orbit" position="0 0 0">
+            <a-entity id="jupiter" position="15 0 0">
+                <a-sphere radius="0.7" 
+                         material="src: 2k_jupiter.jpg">
+                </a-sphere>
+                <a-text value="JUPITER" position="0 -1 0" align="center" color="#DAA520" width="3" class="label"></a-text>
+            </a-entity>
+        </a-entity>
+        
+        <!-- Saturn Orbit -->
+        <a-entity id="saturn-orbit" position="0 0 0">
+            <a-entity id="saturn" position="20 0 0">
+                <a-sphere radius="0.6" 
+                         material="src: 2k_saturn.jpg">
+                </a-sphere>
+                <!-- Saturn's Rings -->
+                <a-ring radius-inner="0.8" radius-outer="1.2" rotation="-60 0 0" 
+                       material="src: 2k_saturn_ring_alpha.jpg; side: double; transparent: true; opacity: 0.8">
+                </a-ring>
+                <a-text value="SATURN" position="0 -1.2 0" align="center" color="#F4A460" width="3" class="label"></a-text>
+            </a-entity>
+        </a-entity>
+        
+        <!-- Uranus Orbit -->
+        <a-entity id="uranus-orbit" position="0 0 0">
+            <a-entity id="uranus" position="25 0 0">
+                <a-sphere radius="0.45" 
+                         material="src: 2k_uranus.jpg">
+                </a-sphere>
+                <a-text value="URANUS" position="0 -0.8 0" align="center" color="#40E0D0" width="3" class="label"></a-text>
+            </a-entity>
+        </a-entity>
+        
+        <!-- Neptune Orbit -->
+        <a-entity id="neptune-orbit" position="0 0 0">
+            <a-entity id="neptune" position="30 0 0">
+                <a-sphere radius="0.45" 
+                         material="src: 2k_neptune.jpg">
+                </a-sphere>
+                <a-text value="NEPTUNE" position="0 -0.8 0" align="center" color="#1E90FF" width="3" class="label"></a-text>
+            </a-entity>
+        </a-entity>
+        
+        <!-- Camera -->
+        <a-entity position="0 15 45" rotation="-20 0 0">
+            <a-camera>
+                <a-cursor></a-cursor>
+            </a-camera>
+        </a-entity>
+        
+        <!-- Lighting -->
+        <a-light type="ambient" color="#333" intensity="0.3"></a-light>
+        <a-light type="directional" color="#FFF" intensity="0.7" position="-5 10 5"></a-light>
+        
+    </a-scene>
+
+    <script>
+        // Orbital animations with realistic relative speeds
+        const orbits = [
+            { id: 'mercury-orbit', duration: 5000 },   // Mercury: 88 Earth days
+            { id: 'venus-orbit', duration: 12000 },    // Venus: 225 Earth days  
+            { id: 'earth-orbit', duration: 20000 },    // Earth: 365 days
+            { id: 'mars-orbit', duration: 38000 },     // Mars: 687 Earth days
+            { id: 'jupiter-orbit', duration: 120000 }, // Jupiter: 12 Earth years
+            { id: 'saturn-orbit', duration: 290000 },  // Saturn: 29 Earth years
+            { id: 'uranus-orbit', duration: 840000 },  // Uranus: 84 Earth years
+            { id: 'neptune-orbit', duration: 1650000 } // Neptune: 165 Earth years
+        ];
+        
+        // Set up orbital animations
+        orbits.forEach(orbit => {
+            const element = document.getElementById(orbit.id);
+            element.setAttribute('animation', {
+                property: 'rotation',
+                to: '0 360 0',
+                dur: orbit.duration,
+                loop: true,
+                easing: 'linear'
+            });
+        });
+        
+        // Planets also rotate on their axis
+        const planets = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'];
+        planets.forEach(planet => {
+            const element = document.getElementById(planet);
+            element.setAttribute('animation', {
+                property: 'rotation',
+                to: '0 360 0',
+                dur: Math.random() * 15000 + 5000, // Random rotation speed
+                loop: true,
+                easing: 'linear'
+            });
+        });
+        
+        // Create orbit visualization lines
+        function createOrbitLines() {
+            const distances = [4, 6, 8, 10, 15, 20, 25, 30];
+            const scene = document.querySelector('a-scene');
+            
+            distances.forEach(distance => {
+                const orbitLine = document.createElement('a-ring');
+                orbitLine.setAttribute('radius-inner', distance - 0.05);
+                orbitLine.setAttribute('radius-outer', distance + 0.05);
+                orbitLine.setAttribute('rotation', '-90 0 0');
+                orbitLine.setAttribute('color', 'rgba(100, 150, 255, 0.1)');
+                orbitLine.setAttribute('material', 'side: double; transparent: true; opacity: 0.15');
+                orbitLine.setAttribute('class', 'orbit-line');
+                scene.appendChild(orbitLine);
+            });
+        }
+        
+        // Create orbit lines initially
+        createOrbitLines();
+        
+        // Control functions
+        let orbitsVisible = true;
+        let labelsVisible = true;
+        let isPaused = false;
+        
+        function toggleOrbits() {
+            orbitsVisible = !orbitsVisible;
+            const orbitLines = document.querySelectorAll('.orbit-line');
+            orbitLines.forEach(line => {
+                line.setAttribute('visible', orbitsVisible);
+            });
+        }
+        
+        function toggleLabels() {
+            labelsVisible = !labelsVisible;
+            const labels = document.querySelectorAll('.label');
+            labels.forEach(label => {
+                label.setAttribute('visible', labelsVisible);
+            });
+        }
+        
+        function togglePause() {
+            isPaused = !isPaused;
+            const animations = document.querySelectorAll('[animation]');
+            animations.forEach(anim => {
+                if (anim.components && anim.components.animation) {
+                    if (isPaused) {
+                        anim.components.animation.pause();
+                    } else {
+                        anim.components.animation.play();
+                    }
+                }
+            });
+        }
+        
+        // Add click events for planet information
+        planets.forEach(planet => {
+            const element = document.getElementById(planet);
+            element.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const planetData = {
+                    'mercury': { name: 'Mercury', facts: 'Closest to Sun, Fastest orbit' },
+                    'venus': { name: 'Venus', facts: 'Hottest planet, Thick atmosphere' },
+                    'earth': { name: 'Earth', facts: 'Only planet with life, 70% water' },
+                    'mars': { name: 'Mars', facts: 'Red planet, Has two moons' },
+                    'jupiter': { name: 'Jupiter', facts: 'Largest planet, Great Red Spot' },
+                    'saturn': { name: 'Saturn', facts: 'Famous rings, 82 moons' },
+                    'uranus': { name: 'Uranus', facts: 'Rotates on its side, Ice giant' },
+                    'neptune': { name: 'Neptune', facts: 'Windiest planet, Deep blue color' }
+                };
+                
+                const data = planetData[planet];
+                alert(`🌌 ${data.name}\n\n${data.facts}`);
+            });
+        });
+        
+        // Sun click event
+        document.querySelector('[position="0 0 0"] a-sphere').addEventListener('click', function() {
+            alert('☀️ SUN\n\nCenter of our Solar System\nTemperature: 5,500°C\nAge: 4.6 billion years');
+        });
+        
+        // Add keyboard controls
+        document.addEventListener('keydown', function(e) {
+            switch(e.key.toLowerCase()) {
+                case ' ':
+                    togglePause();
+                    break;
+                case 'o':
+                    toggleOrbits();
+                    break;
+                case 'l':
+                    toggleLabels();
+                    break;
+                case 'r':
+                    // Reset camera
+                    const camera = document.querySelector('a-camera').parentElement;
+                    camera.setAttribute('position', '0 15 45');
+                    camera.setAttribute('rotation', '-20 0 0');
+                    break;
+            }
+        });
+        
+        // Add auto camera movement
+        document.querySelector('a-camera').parentElement.setAttribute('animation', {
+            property: 'rotation',
+            to: '0 360 0',
+            dur: 180000, // 3 minutes for full rotation
+            loop: true,
+            easing: 'linear'
+        });
+        
+    </script>
+</body>
+</html>
